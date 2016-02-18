@@ -1,11 +1,17 @@
 package wx.ry.org.wxhelper;
 
+import android.database.Observable;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+
+import rx.Subscription;
+import rx.functions.Action1;
+import rx.functions.Func2;
+import rx.observers.Observers;
 
 /**
  * Created by renyang on 16/2/16.
@@ -21,20 +27,16 @@ public class Util {
         return b;
     }
 
-    public static String listToString(List<String> stringList) {
+    public static rx.Observable<String> listToString(List<String> stringList) {
         if (stringList == null) {
             return null;
         }
-        StringBuilder result = new StringBuilder();
-        boolean flag = false;
-        for (String string : stringList) {
-            if (flag) {
-                result.append(",");
-            } else {
-                flag = true;
+        return rx.Observable.from(stringList).scan(new Func2<String, String, String>() {
+            @Override
+            public String call(String s, String s2) {
+                return s+","+s2;
             }
-            result.append(string);
-        }
-        return result.toString();
+        }).takeLast(1);
+
     }
 }

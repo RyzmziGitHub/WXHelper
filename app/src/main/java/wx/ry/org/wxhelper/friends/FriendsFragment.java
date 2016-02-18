@@ -6,8 +6,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.jakewharton.rxbinding.view.RxView;
+
 import java.util.List;
 
+import rx.Subscription;
+import rx.functions.Action1;
 import wx.ry.org.wxhelper.BaseFragment;
 import wx.ry.org.wxhelper.R;
 import wx.ry.org.wxhelper.Util;
@@ -24,14 +28,19 @@ public class FriendsFragment extends BaseFragment {
     @Override
     protected void init(final View view) {
         Button button = (Button)view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        RxView.clicks(button).subscribe(new Action1<Void>() {
             @Override
-            public void onClick(View v) {
+            public void call(Void aVoid) {
                 EditText editText = (EditText)view.findViewById(R.id.editText);
                 Dictionary dictionary = new Dictionary(getActivity());
                 List<String> list = dictionary.getNickName(Integer.parseInt(editText.getText().toString()));
-                StarLayout starLayout = new StarLayout(getActivity());
-                starLayout.setStar(Util.listToString(list));
+                final StarLayout starLayout = new StarLayout(getActivity());
+                Util.listToString(list).subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        starLayout.setStar(s);
+                    }
+                });
                 ImageView imageView = (ImageView)view.findViewById(R.id.imageView2);
                 Bitmap bitmap = Util.loadBitmapFromView(starLayout);
                 imageView.setImageBitmap(bitmap);

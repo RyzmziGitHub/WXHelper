@@ -1,9 +1,9 @@
 package wx.ry.org.wxhelper;
 
 /**
- * Created by renyang on 16/2/16.
+ * Created by renyang on 16/2/18.
  */
-public class CodeLog {
+public class WXLog {
 
     public static void i(String msg){
         base("I:",msg,2);
@@ -17,8 +17,7 @@ public class CodeLog {
         String classNameString = ste.getClassName();
         classNameString = classNameString.substring(classNameString.lastIndexOf(".") + 1, classNameString.length());
 
-        android.util.Log.i("CodeLog", "[" + classNameString + "." + ste.getMethodName() + " line:" + ste.getLineNumber() + "] >>    "
+        android.util.Log.i("WXLog", "[" + classNameString + "." + ste.getMethodName() + " line:" + ste.getLineNumber() + "] >>    "
                 + string);
     }
-
 }

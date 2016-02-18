@@ -1,14 +1,10 @@
 package wx.ry.org.wxhelper.friends;
-
 import android.content.Context;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import wx.ry.org.wxhelper.CodeLog;
 
 /**
  * Created by renyang on 16/2/16.
@@ -21,34 +17,22 @@ public class Dictionary {
         try{
             //expression
             String expressionData = load(context,"expression_data.txt","gb2312");
-            CodeLog.i("expressionData:" + expressionData);
             strExpression = expressionData.split("&");
-            CodeLog.i("strExpression:" + strExpression.length);
             //chinese
             String chineseData = load(context,"chinese_data.txt","gb2312");
-            CodeLog.i("chineseData:"+chineseData);
             strChinese = chineseData.split("&");
-            CodeLog.i("strChinese:"+strChinese.length);
             //english
             String englishData = load(context,"english_data.txt","gb2312");
-            CodeLog.i("englishData:"+englishData);
             strEnglish = englishData.split("&");
-            CodeLog.i("strEnglish:"+strEnglish.length);
             //adjective
             String adjectiveData = load(context,"adjective_data.txt","gb2312");
-            CodeLog.i("adjectiveData:"+adjectiveData);
             strAdjective = adjectiveData.split("&");
-            CodeLog.i("strAdjective:"+strAdjective.length);
             //noun
             String nounData = load(context,"noun_data.txt","gb2312");
-            CodeLog.i("nounData:"+nounData);
             strNoun = nounData.split("&");
-            CodeLog.i("strNoun:"+strNoun.length);
             //nick
             String nickData = load(context,"nick_data.txt","gb2312");
-            CodeLog.i("nickData:"+nickData);
             strNick = nickData.split("&");
-            CodeLog.i("strNick:"+strNick.length);
         }catch (IOException e){
 
         }
