@@ -65,30 +65,16 @@
             android:layout_below="@+id/iv_content_image"
             android:background="@drawable/wx_message" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_star_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/start_bg"
             android:layout_below="@+id/tv_time"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/start_bg"
+            android:textColor="#4f6283" />
 
-            <ImageView
-                android:id="@+id/iv_star_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/heart"
-                />
-
-            <TextView
-                android:id="@+id/tv_star_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="张三,李四"
-                android:textColor="#4f6283" />
-
-        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

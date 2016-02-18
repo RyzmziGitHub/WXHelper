@@ -1,5 +1,10 @@
 package wx.ry.org.wxhelper.friends;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -14,7 +19,7 @@ public class StarLayout extends FrameLayout{
 
     private TextView tvStart;
     private LinearLayout llFriends;
-
+    private Context context;
     public StarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context,attrs);
@@ -31,12 +36,17 @@ public class StarLayout extends FrameLayout{
     }
 
     private void init(Context context, AttributeSet attrs){
+        this.context = context;
         inflate(context, R.layout.view_friends, this);
         onFinishInflate();
+
     }
 
     public void setStar(String star){
-        tvStart.setText(star);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(star);
+        ImageSpan imageSpan = new ImageSpan(context,R.drawable.heart);
+        spannableStringBuilder.setSpan(imageSpan,0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvStart.setText(spannableStringBuilder);
     }
 
     @Override
