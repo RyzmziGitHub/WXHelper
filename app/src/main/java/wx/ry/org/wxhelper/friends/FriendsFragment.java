@@ -33,9 +33,8 @@ public class FriendsFragment extends BaseFragment {
             public void call(Void aVoid) {
                 EditText editText = (EditText)view.findViewById(R.id.editText);
                 Dictionary dictionary = new Dictionary(getActivity());
-                List<String> list = dictionary.getNickName(Integer.parseInt(editText.getText().toString()));
                 final StarLayout starLayout = new StarLayout(getActivity());
-                Util.listToString(list).subscribe(new Action1<String>() {
+                dictionary.getNickName(Integer.parseInt(editText.getText().toString())).subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
                         starLayout.setStar(s);

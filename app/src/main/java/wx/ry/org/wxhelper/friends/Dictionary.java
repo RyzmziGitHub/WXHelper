@@ -6,6 +6,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.functions.Func2;
+import wx.ry.org.wxhelper.WXLog;
+
 /**
  * Created by renyang on 16/2/16.
  */
@@ -38,21 +44,21 @@ public class Dictionary {
         }
     }
 
-    public List<String> getNickName(int num){
-        List<String> list = new ArrayList<String>();
-        for(int i = 0; i< num ; i++){
-            int temp = getRandomNum(100);
-            if(temp < 30){
-                list.add(strNick[getRandomNum(strNick.length)]);
-            }else if(temp <70){
-                list.add(strAdjective[getRandomNum(strAdjective.length)]+"的"+strNoun[getRandomNum(strNoun.length)]);
-            }else if(temp < 90){
-                list.add(strChinese[getRandomNum(strChinese.length)]);
-            }else{
-                list.add(strEnglish[getRandomNum(strChinese.length)]);
+    public rx.Observable<String> getNickName(int num){
+        return Observable.range(0, num).map(new Func1<Integer, String>() {
+            @Override
+            public String call(Integer integer) {
+                int temp = getRandomNum(100);
+                if(temp < 60) return strNick[getRandomNum(strNick.length)];
+                if(temp < 90) return strChinese[getRandomNum(strChinese.length)];
+                return strEnglish[getRandomNum(strEnglish.length)];
             }
-        }
-        return list;
+        }).scan(new Func2<String, String, String>() {
+            @Override
+            public String call(String s, String s2) {
+                return s+","+s2;
+            }
+        }).takeLast(1);
     }
 
     private String load(Context context,String path,String charsetName) throws IOException {

@@ -20,6 +20,8 @@ public class StarLayout extends FrameLayout{
     private TextView tvStart;
     private LinearLayout llFriends;
     private Context context;
+    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+
     public StarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context,attrs);
@@ -43,9 +45,9 @@ public class StarLayout extends FrameLayout{
     }
 
     public void setStar(String star){
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(star);
-        ImageSpan imageSpan = new ImageSpan(context,R.drawable.heart);
-        spannableStringBuilder.setSpan(imageSpan,0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.clear();
+        spannableStringBuilder.append("  "+star);
+        spannableStringBuilder.setSpan(new ImageSpan(context,R.drawable.heart),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvStart.setText(spannableStringBuilder);
     }
 
