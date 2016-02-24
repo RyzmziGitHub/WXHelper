@@ -1,4 +1,4 @@
-package wx.ry.org.wxhelper;
+package wx.ry.org.wxhelper.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +14,7 @@ import wx.ry.org.wxhelper.friends.FriendsFragment;
  */
 public abstract class BaseFragment extends Fragment{
 
-    protected static final int TYPE_FRIENDS = 001;
+    public static final int TYPE_FRIENDS = 0x000001;
 
     protected abstract int fromLayout();
 

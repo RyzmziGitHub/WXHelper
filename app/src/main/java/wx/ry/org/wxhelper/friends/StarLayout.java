@@ -1,7 +1,5 @@
 package wx.ry.org.wxhelper.friends;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
@@ -9,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import wx.ry.org.wxhelper.App;
+import wx.ry.org.wxhelper.app.App;
 import wx.ry.org.wxhelper.R;
 
 /**

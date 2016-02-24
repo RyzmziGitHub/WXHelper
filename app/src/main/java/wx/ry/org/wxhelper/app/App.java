@@ -1,4 +1,4 @@
-package wx.ry.org.wxhelper;
+package wx.ry.org.wxhelper.app;
 
 import android.app.Application;
 import android.content.res.Configuration;

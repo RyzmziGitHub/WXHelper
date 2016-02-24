@@ -3,14 +3,10 @@ import android.content.Context;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import rx.Observable;
-import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.functions.Func2;
-import wx.ry.org.wxhelper.WXLog;
 
 /**
  * Created by renyang on 16/2/16.

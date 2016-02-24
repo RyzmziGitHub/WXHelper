@@ -8,11 +8,8 @@ import android.widget.ImageView;
 
 import com.jakewharton.rxbinding.view.RxView;
 
-import java.util.List;
-
-import rx.Subscription;
 import rx.functions.Action1;
-import wx.ry.org.wxhelper.BaseFragment;
+import wx.ry.org.wxhelper.base.BaseFragment;
 import wx.ry.org.wxhelper.R;
 import wx.ry.org.wxhelper.Util;
 

@@ -1,17 +1,13 @@
 package wx.ry.org.wxhelper;
 
-import android.database.Observable;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.List;
 
-import rx.Subscription;
-import rx.functions.Action1;
 import rx.functions.Func2;
-import rx.observers.Observers;
+import wx.ry.org.wxhelper.app.App;
 
 /**
  * Created by renyang on 16/2/16.

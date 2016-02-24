@@ -7,4 +7,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="friends_header_icon">42dp</dimen>
+    <dimen name="crop_spacing">3dp</dimen>
 </resources>

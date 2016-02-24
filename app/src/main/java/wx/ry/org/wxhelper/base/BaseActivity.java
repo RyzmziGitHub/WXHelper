@@ -1,11 +1,12 @@
-package wx.ry.org.wxhelper;
+package wx.ry.org.wxhelper.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import wx.ry.org.wxhelper.R;
 
 /**
  * Created by renyang on 16/2/15.
