@@ -1,9 +1,15 @@
 package wx.ry.org.wxhelper;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import rx.functions.Func2;
@@ -34,5 +40,21 @@ public class Util {
             }
         }).takeLast(1);
 
+    }
+
+    public static Bitmap getBitmapByUri(Context context , Uri uri) {
+        try {
+            return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Uri getUribyBitmap(Context context,Bitmap bitmap){
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
     }
 }

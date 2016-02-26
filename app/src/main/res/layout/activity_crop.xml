@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <wx.ry.org.wxhelper.crop.CropLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_okey"
-        android:layout_gravity="top|right"
-        android:text="@string/okey"
-        />
+        <TextView
+            android:id="@+id/tv_okey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_marginRight="30dp"
+            android:text="@string/okey"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            />
 
-</FrameLayout>
+        </android.support.v7.widget.Toolbar>
+
+    <wx.ry.org.wxhelper.main.crop.CropLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </wx.ry.org.wxhelper.main.crop.CropLayout>
+</LinearLayout>

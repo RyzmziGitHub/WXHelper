@@ -1,8 +1,7 @@
-package wx.ry.org.wxhelper.crop;
+package wx.ry.org.wxhelper.main.crop;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -35,7 +34,7 @@ public class CropLayout extends FrameLayout {
 
     private void init() {
         paint = new Paint();
-        paint.setColor(Color.RED);
+        paint.setColor(getResources().getColor(R.color.colorPrimary));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2);
         spacing = getResources().getDimensionPixelOffset(R.dimen.crop_spacing);

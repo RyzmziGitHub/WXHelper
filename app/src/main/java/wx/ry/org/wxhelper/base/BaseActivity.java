@@ -13,11 +13,15 @@ import wx.ry.org.wxhelper.R;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    public static final int DEFAULT_REQUEST_CODE = 0x000;
+
     protected abstract  int fromLayout();
 
     protected abstract void init();
 
     protected Toolbar toolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +32,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         init();
     }
 
-    public static void startUIActivity(Context context,Class<?> cls,boolean isFinsh){
+    public static void startUIActivity(Context context,Class<?> cls,boolean isFinsh,int requestCode){
         BaseActivity instance = ((BaseActivity) context);
         Intent intent = new Intent(context,cls);
-        instance.startActivity(intent);
+        instance.startActivityForResult(intent,requestCode);
         if(isFinsh){
             instance.finish();
         }
     }
 
     public static void startUIActivity(Context context,Class<?> cls){
-        startUIActivity(context,cls,false);
+        startUIActivity(context,cls,false,DEFAULT_REQUEST_CODE);
     }
 
 }

@@ -1,13 +1,11 @@
 package wx.ry.org.wxhelper.main;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
@@ -15,15 +13,21 @@ import com.jakewharton.rxbinding.view.RxView;
 
 import rx.functions.Action1;
 import wx.ry.org.wxhelper.R;
+import wx.ry.org.wxhelper.Util;
 import wx.ry.org.wxhelper.base.BaseActivity;
 import wx.ry.org.wxhelper.base.BaseFragment;
-import wx.ry.org.wxhelper.crop.CropManager;
+import wx.ry.org.wxhelper.main.crop.CropActivity;
+import wx.ry.org.wxhelper.main.crop.CropManager;
+import wx.ry.org.wxhelper.permission.PermissionManager;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final int CODE_CROP = 0x0070;
+    public static final int CODE_EDIT_NAME = 0x0071;
+
     private ImageView ivHeader;
-    private CropManager cropManager;
+
 
     @Override
     protected int fromLayout() {
@@ -32,8 +36,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void init() {
-
-        cropManager = new CropManager(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,24 +46,17 @@ public class MainActivity extends BaseActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ivHeader = (ImageView)navigationView.getHeaderView(0).findViewById(R.id.iv_header_icon);
+        ivHeader = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.iv_header_icon);
 
         RxView.clicks(ivHeader).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                cropManager.openPhoto(new CropManager.BitmapListener() {
-                    @Override
-                    public void cropBitmap(Bitmap bitmap) {
-                        ivHeader.setImageBitmap(bitmap);
-                    }
+                startUIActivity(MainActivity.this, CropActivity.class);
 
-                    @Override
-                    public void fail() {
-
-                    }
-                });
             }
         });
+
+        new PermissionManager(this).requestPermission();
     }
 
 
@@ -73,28 +68,6 @@ public class MainActivity extends BaseActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -117,8 +90,8 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        cropManager.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == CODE_CROP) {
+            ivHeader.setImageBitmap(Util.getBitmapByUri(MainActivity.this, data.getData()));
+        }
     }
-
-
 }
