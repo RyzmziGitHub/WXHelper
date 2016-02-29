@@ -12,6 +12,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 import wx.ry.org.wxhelper.R;
 import wx.ry.org.wxhelper.Util;
 import wx.ry.org.wxhelper.base.BaseActivity;
+import wx.ry.org.wxhelper.main.MainActivity;
 
 /**
  * Created by renyang on 16/2/24.
@@ -49,9 +50,8 @@ public class CropActivity extends BaseActivity {
             @Override
             public void call(Void aVoid) {
                 Bitmap bitmap = cropManager.crop(ivIcon, attacher);
-                Intent intent = new Intent();
-                intent.setData(Util.getUribyBitmap(CropActivity.this,bitmap));
-                setResult(CropManager.CODE_CROP, intent);
+                Util.saveIconForAppPath(CropActivity.this,bitmap);
+                setResult(MainActivity.CODE_CROP, new Intent());
                 finish();
             }
         });

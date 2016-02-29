@@ -1,6 +1,7 @@
 package wx.ry.org.wxhelper.main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -8,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -26,7 +28,7 @@ public class MainActivity extends BaseActivity
     public static final int CODE_CROP = 0x0070;
     public static final int CODE_EDIT_NAME = 0x0071;
 
-    private ImageView ivHeader;
+    public ImageView ivHeader;
 
 
     @Override
@@ -57,6 +59,8 @@ public class MainActivity extends BaseActivity
         });
 
         new PermissionManager(this).requestPermission();
+
+        loadHeaderIcon();
     }
 
 
@@ -87,11 +91,18 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
+    private void loadHeaderIcon(){
+        Bitmap bitmap = Util.getIconForAppPath(MainActivity.this);
+        if(bitmap != null){
+            ivHeader.setImageBitmap(bitmap);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == CODE_CROP) {
-            ivHeader.setImageBitmap(Util.getBitmapByUri(MainActivity.this, data.getData()));
+           loadHeaderIcon();
         }
     }
 }
