@@ -60,6 +60,10 @@ public class CropActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        cropManager.onActivityResult(requestCode, resultCode, data);
+        if(data == null){
+            finish();
+        }else{
+            cropManager.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

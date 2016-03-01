@@ -39,7 +39,9 @@ public class CropManager {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CODE_REQUEST) {
-            bitmapListener.cropBitmap(Util.getBitmapByUri(context, data.getData()));
+            if(data != null){
+                bitmapListener.cropBitmap(Util.getBitmapByUri(context, data.getData()));
+            }
         }
     }
 

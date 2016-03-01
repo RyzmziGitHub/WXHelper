@@ -25,14 +25,11 @@ public class FriendsFragment extends BaseFragment {
     }
     private Dictionary dictionary;
     private StarLayout starLayout;
-    private ImageView ivHeader;
-    private MainActivity instance;
+    private ImageView ivCrop;
     @Override
     protected void init(final View view) {
-        instance = (MainActivity)getActivity();
-
         Button button = (Button)view.findViewById(R.id.button);
-        ivHeader = (ImageView)view.findViewById(R.id.iv_header_icon);
+        ivCrop = (ImageView)view.findViewById(R.id.iv_header_icon);
         final EditText editText = (EditText)view.findViewById(R.id.editText);
         dictionary = new Dictionary(getActivity());
         starLayout = new StarLayout(getActivity());
@@ -45,7 +42,7 @@ public class FriendsFragment extends BaseFragment {
                     public void call(String s) {
                         starLayout.setStar(s);
                         Bitmap bitmap = Util.loadBitmapFromView(starLayout);
-                        ivHeader.setImageBitmap(bitmap);
+                        ivCrop.setImageBitmap(bitmap);
                     }
                 });
             }

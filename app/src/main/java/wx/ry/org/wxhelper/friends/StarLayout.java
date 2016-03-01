@@ -1,12 +1,16 @@
 package wx.ry.org.wxhelper.friends;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import wx.ry.org.wxhelper.Util;
 import wx.ry.org.wxhelper.app.App;
 import wx.ry.org.wxhelper.R;
 
@@ -18,6 +22,7 @@ public class StarLayout extends FrameLayout{
     private TextView tvStart;
     private LinearLayout llFriends;
     private Context context;
+    private ImageView ivHeaderIcon;
     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
 
     public StarLayout(Context context, AttributeSet attrs) {
@@ -44,9 +49,13 @@ public class StarLayout extends FrameLayout{
 
     public void setStar(String star){
         spannableStringBuilder.clear();
-        spannableStringBuilder.append("  "+star);
-        spannableStringBuilder.setSpan(new ImageSpan(context,R.drawable.heart),0,1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.append("  " + star);
+        spannableStringBuilder.setSpan(new ImageSpan(context, R.drawable.heart), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvStart.setText(spannableStringBuilder);
+        Bitmap bitmap = Util.getIconForAppPath(context);
+        if(bitmap != null){
+            ivHeaderIcon.setImageBitmap(bitmap);
+        }
     }
 
     @Override
@@ -55,5 +64,6 @@ public class StarLayout extends FrameLayout{
         tvStart = (TextView)findViewById(R.id.tv_star_content);
         llFriends = (LinearLayout)findViewById(R.id.ll_friends);
         llFriends.setLayoutParams(new FrameLayout.LayoutParams(App.UI_SCREEN_WIDTH,App.UI_SCREEN_HEIGHT));
+        ivHeaderIcon = (ImageView)findViewById(R.id.iv_header_icon);
     }
 }
