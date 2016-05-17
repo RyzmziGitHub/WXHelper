@@ -1,9 +1,12 @@
 package wx.ry.org.wxhelper.main.editname;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.EditText;
 
 import wx.ry.org.wxhelper.R;
+import wx.ry.org.wxhelper.Util;
+import wx.ry.org.wxhelper.app.App;
 import wx.ry.org.wxhelper.base.BaseActivity;
 import wx.ry.org.wxhelper.main.MainActivity;
 
@@ -26,7 +29,11 @@ public class EditNameActivity extends BaseActivity{
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent();
-        setResult(MainActivity.CODE_EDIT_NAME);
+        String name = etEditName.getText().toString();
+        if(!TextUtils.isEmpty(name)){
+            Util.saveData(EditNameActivity.this, App.KEY_NAME,etEditName.getText().toString());
+            setResult(MainActivity.CODE_EDIT_NAME, null);
+        }
+        super.onBackPressed();
     }
 }

@@ -52,11 +52,9 @@ public class PermissionManager {
                         }
                     });
                 }
-                return ;
             }
             ActivityCompat.requestPermissions((Activity) context,permissionsList.toArray(new String[permissionsList.size()]),
                     REQUEST_CODE_PERMISSION);
-            return ;
         }
     }
 

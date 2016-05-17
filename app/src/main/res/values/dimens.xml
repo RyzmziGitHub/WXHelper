@@ -8,4 +8,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="friends_header_icon">42dp</dimen>
     <dimen name="crop_spacing">3dp</dimen>
+    <dimen name="view_friend_dfault_height">100dp</dimen>
 </resources>

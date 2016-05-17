@@ -14,6 +14,8 @@ public class App extends Application{
     public static float UI_DENSITY;
     public static int UI_DENSITYDPI;
 
+    public static String KEY_NAME = "name";
+
     @Override
     public void onCreate() {
         super.onCreate();

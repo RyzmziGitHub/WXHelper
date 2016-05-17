@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 
@@ -26,23 +27,26 @@ public class FriendsFragment extends BaseFragment {
     private Dictionary dictionary;
     private StarLayout starLayout;
     private ImageView ivCrop;
+    private EditText etNum,etContent;
     @Override
     protected void init(final View view) {
         Button button = (Button)view.findViewById(R.id.button);
         ivCrop = (ImageView)view.findViewById(R.id.iv_header_icon);
-        final EditText editText = (EditText)view.findViewById(R.id.editText);
+        etNum = (EditText)view.findViewById(R.id.et_star_num);
+        etContent = (EditText)view.findViewById(R.id.et_content);
         dictionary = new Dictionary(getActivity());
         starLayout = new StarLayout(getActivity());
 
         RxView.clicks(button).subscribe(new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                dictionary.getNickName(Integer.parseInt(editText.getText().toString())).subscribe(new Action1<String>() {
+                dictionary.getNickName(Integer.parseInt(etNum.getText().toString())).subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        starLayout.setStar(s);
-                        Bitmap bitmap = Util.loadBitmapFromView(starLayout);
+                        int height = starLayout.setStar(s, etContent.getText().toString(), null);
+                        Bitmap bitmap = Util.loadBitmapFromView(starLayout,height);
                         ivCrop.setImageBitmap(bitmap);
+                        //Util.saveIconForSDPath(bitmap);
                     }
                 });
             }
